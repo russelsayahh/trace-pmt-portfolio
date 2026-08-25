@@ -108,7 +108,7 @@ if (document.readyState === 'loading') {
 const contactForm = document.getElementById('contactForm');
 
 // WhatsApp number to receive contact form messages (with country code, no + or spaces)
-const WHATSAPP_NUMBER = '961769792867';
+const WHATSAPP_NUMBER = '96176979286';
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -397,4 +397,4 @@ document.body.insertBefore(skipLink, document.body.firstChild);
 
 console.log('Tracy Gemayel Portfolio - Loaded Successfully');
 console.log('Professional Psychomotor Therapist Portfolio Website');
-console.log('© 2024 Tracy Gemayel. All rights reserved.');
+console.log('© 2026 Tracy Gemayel. All rights reserved.');

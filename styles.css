@@ -192,49 +192,62 @@ a:hover {
    ============================================ */
 
 .hero {
-    padding: 80px 0;
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
-.hero .container {
-    width: 100%;
+    background: var(--bg-light);
+    overflow: hidden;
 }
 
 .hero-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    align-items: stretch;
+    min-height: 640px;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 4rem 4rem clamp(20px, 8vw, 100px);
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--accent-color);
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    line-height: 1.2;
+    font-size: 3rem;
+    line-height: 1.25;
     margin-bottom: 1.5rem;
     color: var(--text-dark);
 }
 
 .hero-description {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--text-light);
     margin-bottom: 2rem;
     line-height: 1.8;
+    max-width: 480px;
 }
 
 .hero-buttons {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+}
+
+.hero-image {
+    height: 100%;
+}
+
+.hero-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    object-fit: cover;
 }
 
 .image-placeholder {
@@ -257,10 +270,6 @@ a:hover {
     height: auto;
     object-fit: cover;
     border-radius: 10px;
-}
-
-.image-placeholder.large {
-    min-height: 400px;
 }
 
 /* ============================================
@@ -301,22 +310,27 @@ section {
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    grid-template-columns: 1fr;
+}
+
+.about-content {
+    text-align: center;
 }
 
 .about-intro {
     font-size: 1.15rem;
     line-height: 1.8;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
+    max-width: 750px;
     color: var(--text-light);
 }
 
 .about-highlights {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .highlight-item {
@@ -351,6 +365,79 @@ section {
 }
 
 /* ============================================
+   APPROACH SECTION
+   ============================================ */
+
+.approach {
+    background: var(--bg-white);
+}
+
+.approach-content {
+    text-align: center;
+}
+
+.approach-intro {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin: 0 auto 2rem;
+    max-width: 750px;
+    color: var(--text-light);
+}
+
+.approach-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.step-item {
+    padding: 2rem;
+    background: var(--bg-light);
+    border-radius: 10px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.step-item:hover {
+    background: var(--primary-light);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 1.1rem;
+    border-radius: 50px;
+    background: var(--accent-light);
+    color: var(--accent-color);
+    margin: 0 auto 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.step-item:hover .step-number {
+    background: var(--primary-color);
+    color: white;
+}
+
+.step-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.step-item p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+/* ============================================
    SERVICES SECTION
    ============================================ */
 
@@ -360,13 +447,13 @@ section {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
 }
 
 .service-card {
     background: white;
-    padding: 2rem;
+    padding: 1.25rem;
     border-radius: 10px;
     text-align: center;
     box-shadow: var(--shadow-sm);
@@ -380,15 +467,15 @@ section {
 }
 
 .service-icon {
-    width: 70px;
-    height: 70px;
+    width: 48px;
+    height: 48px;
     background: var(--primary-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1.5rem;
-    font-size: 2rem;
+    margin: 0 auto 0.85rem;
+    font-size: 1.25rem;
     color: var(--primary-color);
     transition: var(--transition);
 }
@@ -400,7 +487,8 @@ section {
 
 .service-card h3 {
     color: var(--text-dark);
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+    font-size: 1rem;
 }
 
 .service-card p {
@@ -417,83 +505,6 @@ section {
     background: white;
 }
 
-.timeline {
-    position: relative;
-    padding: 2rem 0;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 3px;
-    height: 100%;
-    background: var(--border-color);
-    top: 0;
-}
-
-.timeline-item {
-    margin-bottom: 3rem;
-    display: flex;
-    gap: 2rem;
-    position: relative;
-}
-
-.timeline-item:nth-child(odd) {
-    padding-right: 50%;
-    text-align: right;
-}
-
-.timeline-item:nth-child(even) {
-    padding-left: 50%;
-}
-
-.timeline-marker {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 15px;
-    height: 15px;
-    background: var(--accent-color);
-    border: 3px solid white;
-    border-radius: 50%;
-    top: 0;
-    box-shadow: var(--shadow-sm);
-    z-index: 2;
-}
-
-.timeline-content {
-    background: var(--bg-light);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: var(--shadow-sm);
-}
-
-.timeline-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.timeline-company {
-    font-weight: 600;
-    color: var(--accent-color);
-    font-size: 0.95rem;
-}
-
-.timeline-date {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    font-style: italic;
-    margin-bottom: 0.5rem;
-}
-
-.timeline-description {
-    color: var(--text-light);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
 /* ============================================
    EDUCATION SECTION
    ============================================ */
@@ -502,30 +513,11 @@ section {
     background: var(--bg-light);
 }
 
-.education-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-}
-
 .education-section {
     background: white;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: var(--shadow-sm);
-}
-
-.subsection-title {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.subsection-title i {
-    color: var(--accent-color);
 }
 
 .education-card {
@@ -608,12 +600,6 @@ section {
     color: var(--accent-color);
     font-size: 0.85rem;
     font-weight: 600;
-}
-
-.internship-focus {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
 }
 
 /* ============================================
@@ -727,6 +713,66 @@ section {
     color: var(--text-light);
     font-size: 0.95rem;
     line-height: 1.6;
+}
+
+/* ============================================
+   WHERE YOU CAN FIND ME SECTION
+   ============================================ */
+
+.find-me {
+    background: var(--bg-light);
+}
+
+.find-me-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+}
+
+.location-card {
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: var(--transition);
+    border-top: 4px solid var(--accent-color);
+}
+
+.location-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+}
+
+.location-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.location-card:hover .location-icon {
+    background: var(--accent-light);
+    color: var(--accent-color);
+}
+
+.location-card h3 {
+    color: var(--text-dark);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.location-area {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin: 0;
 }
 
 /* ============================================
@@ -911,40 +957,12 @@ section {
     h1 { font-size: 2.75rem; }
     h2 { font-size: 2rem; }
     
-    .hero-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
-
     .hero-title {
         font-size: 2.5rem;
     }
 
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .about-highlights {
-        grid-template-columns: 1fr;
-    }
-
-    .timeline::before {
-        display: none;
-    }
-
-    .timeline-item,
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
-        padding: 0;
-    }
-
-    .timeline-marker {
-        display: none;
-    }
-
-    .education-grid {
-        grid-template-columns: 1fr;
+    .hero-text {
+        padding: 3rem 2rem;
     }
 
     .contact-wrapper {
@@ -994,13 +1012,23 @@ section {
     }
 
     /* Hero */
-    .hero {
-        padding: 60px 0;
+    .hero-content {
+        grid-template-columns: 1fr;
         min-height: auto;
     }
 
-    .hero-content {
-        grid-template-columns: 1fr;
+    .hero-text {
+        padding: 3rem 1.5rem;
+        order: 2;
+    }
+
+    .hero-image {
+        order: 1;
+    }
+
+    .hero-photo {
+        min-height: 320px;
+        max-height: 420px;
     }
 
     .hero-title {
@@ -1030,19 +1058,11 @@ section {
         grid-template-columns: 1fr;
     }
 
-    /* Education */
-    .education-grid {
+    /* Find Me */
+    .find-me-grid {
         grid-template-columns: 1fr;
     }
 
-    /* Timeline */
-    .timeline-item {
-        flex-direction: column;
-    }
-
-    .timeline-content {
-        margin-bottom: 1rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -1085,6 +1105,19 @@ section {
 
     .highlight-item i {
         font-size: 2rem;
+    }
+
+    .approach-steps {
+        gap: 1rem;
+    }
+
+    .step-item {
+        padding: 1.25rem;
+    }
+
+    .step-number {
+        padding: 0.35rem 0.9rem;
+        font-size: 0.9rem;
     }
 
     .education-header {
