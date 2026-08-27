@@ -18,6 +18,21 @@
     <meta name="twitter:description" content="Psychomotor Therapist specializing in neurological disorders, ADHD, and developmental disabilities in Beirut, Lebanon.">
     <meta name="twitter:image" content="images/tracy.jpeg">
 
+    <!-- Marks that JS is available, before the page paints, so the scroll-reveal
+         elements start hidden instead of flashing in. Without JS the .js class is
+         never set and every [data-reveal] element stays plainly visible. -->
+    <script>
+        document.documentElement.classList.add('js');
+
+        // Safety net: if script.js never runs (failed to load, blocked, errored),
+        // drop the flag so the page shows its content instead of staying blank.
+        setTimeout(function () {
+            if (!window.revealReady) {
+                document.documentElement.classList.remove('js');
+            }
+        }, 4000);
+    </script>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +71,7 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text">                  
+                <div class="hero-text" data-reveal>                  
                     <h1 class="hero-title">Moving towards better, Together!</h1>
                     <p class="hero-description">
                         From newborns to older adults, I meet each person where they are. Supporting children, adults, and individuals with neurological disorders and disabilities through movement, connection, and care that grows with you.
@@ -66,7 +81,7 @@
                         <a href="#services" class="btn btn-secondary">Learn More</a>
                     </div>
                 </div>
-                <div class="hero-image">
+                <div class="hero-image" data-reveal>
                     <div class="image-placeholder">
                         <img src="images/tracy.jpeg" alt="Tracy Gemayel - Psychomotor Therapist">
                     </div>
@@ -78,9 +93,9 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title" data-reveal>About Me</h2>
             <div class="about-grid">
-                <div class="about-content">
+                <div class="about-content" data-reveal>
                     <p class="about-intro">
                         I am a dedicated psychomotor therapist with a passion for helping individuals of all ages overcome neurological, developmental, and behavioral challenges. With extensive training and clinical experience across diverse healthcare settings, I provide compassionate, evidence-based interventions tailored to each patient's unique needs.
                     </p>
@@ -93,107 +108,107 @@
     <!-- Who I Work With Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">Who I Work With</h2>
+            <h2 class="section-title" data-reveal>Who I Work With</h2>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-baby"></i>
                     </div>
                     <h3>Newborns and Early Development</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
                     <h3>Attention-Deficit/Hyperactivity Disorder (ADHD)</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-puzzle-piece"></i>
                     </div>
                     <h3>Autism Spectrum Disorder</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-shoe-prints"></i>
                     </div>
                     <h3>Developmental Coordination Disorder (DCD)</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3>Intellectual Disability</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-heart"></i>
                     </div>
                     <h3>Down Syndrome</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-seedling"></i>
                     </div>
                     <h3>Global Developmental Delay</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-running"></i>
                     </div>
                     <h3>Motor Coordination Difficulties</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-hand-sparkles"></i>
                     </div>
                     <h3>Sensory Processing Difficulties</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-user-injured"></i>
                     </div>
                     <h3>Neurological Disorders and Physical Disabilities</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-briefcase-medical"></i>
                     </div>
                     <h3>Parkinson's Disease</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-clock"></i>
                     </div>
                     <h3>Alzheimer's Disease and Related Cognitive Decline</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-user-friends"></i>
                     </div>
                     <h3>Older Adults and Elderly Care</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-book"></i>
                     </div>
                     <h3>Learning Difficulties</h3>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card" data-reveal>
                     <div class="service-icon">
                         <i class="fas fa-comments"></i>
                     </div>
@@ -205,28 +220,28 @@
     <!-- Approach Section -->
     <section class="approach" id="approach">
         <div class="container">
-            <h2 class="section-title">The Approach</h2>
+            <h2 class="section-title" data-reveal>The Approach</h2>
             <div class="approach-content">
-                <p class="approach-intro">
+                <p class="approach-intro" data-reveal>
                     This intervention is built on years of real, hands-on experience; not just what's learned in a classroom, but what's learned by sitting with people, watching closely, and adjusting as needed. Techniques are selected based on each person's capacities and needs. What matters most is the moment things click: a skill gained, a step forward, a shift the person notices in their own daily life. Before any intervention begins, a few important steps come first.
                 </p>
                 <div class="approach-steps">
-                    <div class="step-item">
+                    <div class="step-item" data-reveal>
                         <div class="step-number">Step 1</div>
                         <h3>Anamnesis</h3>
                         <p>Gathering a detailed history of the person's development, health, and daily functioning to understand the full picture before intervention begins.</p>
                     </div>
-                    <div class="step-item">
+                    <div class="step-item" data-reveal>
                         <div class="step-number">Step 2</div>
                         <h3>Assessment</h3>
                         <p>Conducting a thorough psychomotor evaluation to identify strengths, difficulties, and specific needs.</p>
                     </div>
-                    <div class="step-item">
+                    <div class="step-item" data-reveal>
                         <div class="step-number">Step 3</div>
                         <h3>Psychomotor Project</h3>
                         <p>Building a personalized intervention project with clear goals and techniques, based on the assessment results.</p>
                     </div>
-                    <div class="step-item">
+                    <div class="step-item" data-reveal>
                         <div class="step-number">Step 4</div>
                         <h3>Intervention</h3>
                         <p>Carrying out the sessions, applying the chosen techniques, and adjusting the approach as progress is made.</p>
@@ -239,9 +254,9 @@
     <!-- Where You Can Find Me Section -->
     <section class="find-me" id="find-me">
         <div class="container">
-            <h2 class="section-title">Where You Can Find Me</h2>
+            <h2 class="section-title" data-reveal>Where You Can Find Me</h2>
             <div class="find-me-grid">
-                <div class="location-card">
+                <div class="location-card" data-reveal>
                     <div class="location-icon">
                         <i class="fas fa-clinic-medical"></i>
                     </div>
@@ -250,7 +265,7 @@
                      <a href ="https://maps.app.goo.gl/NQZDR9sQE3EZ1Vkx5" target="_blank" rel="noopener" class="location-link">View on Google Maps</a>
                 </div>
 
-                <div class="location-card">
+                <div class="location-card" data-reveal>
                     <div class="location-icon">
                         <i class="fas fa-clinic-medical"></i>
                     </div>
@@ -259,7 +274,7 @@
                      <a href ="https://maps.app.goo.gl/QLu7og4UfiM7BFnP9" target="_blank" rel="noopener" class="location-link">View on Google Maps</a>
                 </div>
 
-                <div class="location-card">
+                <div class="location-card" data-reveal>
                     <div class="location-icon">
                         <i class="fas fa-school"></i>
                     </div>
@@ -268,7 +283,7 @@
                      <a href ="https://maps.app.goo.gl/QbDiVvwQzwRs3LtF8?g_st=iw" target="_blank" rel="noopener" class="location-link">View on Google Maps</a>
                 </div>
 
-                <div class="location-card">
+                <div class="location-card" data-reveal>
                     <div class="location-icon">
                         <i class="fas fa-school"></i>
                     </div>
@@ -283,61 +298,61 @@
     <!-- Internships Section -->
     <section class="experience" id="internships">
         <div class="container">
-            <h2 class="section-title">Internships</h2>
+            <h2 class="section-title" data-reveal>Internships</h2>
             <div class="education-section">
                 <div class="internship-list">
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Garderie Poupon</h4>
                     </div>
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Centre de diagnostic et de soins en psychomotricité</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Hotel-Dieu de France - Neonatology</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Sesobel</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>École des sœurs de la charité de Besançon</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Private Clinic - Bikfaya</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Hôpital Psychiatrique de la Croix</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Hotel-Dieu de France - Psychiatric</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>École Notre-Dame de la Lumière</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Rabieh Nursery</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Saint Joseph School</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Collège Mariste Champville</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>The Lebanese School for the Blind and Deaf</h4>
                     </div>
 
-                    <div class="internship-item">
+                    <div class="internship-item" data-reveal>
                         <h4>Dispensary - Hospital Mgr. Kortbawi</h4>
                     </div>
                 </div>
@@ -347,9 +362,9 @@
     <!-- Education Section -->
     <section class="education" id="education">
         <div class="container">
-            <h2 class="section-title">Education</h2>
+            <h2 class="section-title" data-reveal>Education</h2>
             <div class="education-section">
-                <div class="education-card">
+                <div class="education-card" data-reveal>
                     <div class="education-header">
                         <h4>Master's in Neurological Disorders and Disabilities</h4>
 
@@ -357,7 +372,7 @@
                     <p class="education-school">Saint Joseph University of Beirut, Lebanon</p>
                 </div>
 
-                <div class="education-card">
+                <div class="education-card" data-reveal>
                     <div class="education-header">
                         <h4>Bachelor's in Psychomotor Therapy</h4>
 
@@ -365,7 +380,7 @@
                     <p class="education-school">Saint Joseph University of Beirut, Lebanon</p>
                 </div>
 
-                <div class="education-card">
+                <div class="education-card" data-reveal>
                     <div class="education-header">
                         <h4>High School Diploma</h4>
 
@@ -380,9 +395,9 @@
     <!-- Skills Section -->
     <section class="skills">
         <div class="container">
-            <h2 class="section-title">Skills</h2>
+            <h2 class="section-title" data-reveal>Skills</h2>
             <div class="skills-grid">
-                <div class="skills-section">
+                <div class="skills-section" data-reveal>
                     <h3>Core Competencies</h3>
                     <div class="skills-list">
                         <span class="skill-tag">Psychomotor Assessment</span>
@@ -408,9 +423,9 @@
     <!-- Volunteering Section -->
     <section class="volunteering">
         <div class="container">
-            <h2 class="section-title">Volunteer Work & Community Service</h2>
+            <h2 class="section-title" data-reveal>Volunteer Work & Community Service</h2>
             <div class="volunteering-grid">
-                <div class="volunteer-card">
+                <div class="volunteer-card" data-reveal>
                     <div class="volunteer-icon">
                         <i class="fas fa-cross"></i>
                     </div>
@@ -419,7 +434,7 @@
                     <p class="volunteer-description">Volunteering with the Order of Malta Lebanon means showing up for the people who are too often overlooked — the elderly and individuals with disabilities. Through camps and activities, care goes beyond assistance; it's about dignity, connection, and making sure every person feels seen.</p>
                 </div>
 
-                <div class="volunteer-card">
+                <div class="volunteer-card" data-reveal>
                     <div class="volunteer-icon">
                         <i class="fas fa-eye-slash"></i>
                     </div>
@@ -428,7 +443,7 @@
                     <p class="volunteer-description">At the Lebanese School for the Blind and Deaf, movement becomes a language of its own. Organizing activities and leading psychomotor therapy workshops here is about creating space for expression, confidence, and connection — proving that communication takes many forms.</p>
                 </div>
 
-                <div class="volunteer-card">
+                <div class="volunteer-card" data-reveal>
                     <div class="volunteer-icon">
                         <i class="fas fa-campground"></i>
                     </div>
@@ -444,9 +459,9 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
+            <h2 class="section-title" data-reveal>Get in Touch</h2>
             <div class="contact-wrapper">
-                <div class="contact-info">
+                <div class="contact-info" data-reveal>
                     <h3>Contact Information</h3>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
@@ -478,7 +493,7 @@
                     </div>
                 </div>
 
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" data-reveal id="contactForm">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
@@ -502,12 +517,12 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
+                <div class="footer-section" data-reveal>
                     <h4>Tracy Gemayel</h4>
                     <p>BSc in Psychomotor Therapy</p>
                     <p>MSc in Neurological Disorders and Disabilities</p>
                 </div>
-                <div class="footer-section">
+                <div class="footer-section" data-reveal>
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
@@ -516,7 +531,7 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
+                <div class="footer-section" data-reveal>
                     <h4>Connect</h4>
                     <div class="social-links">
                         <a href="https://www.instagram.com/trace.pmt?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==&igsi=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>

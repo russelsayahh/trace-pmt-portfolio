@@ -1191,3 +1191,39 @@ section {
 .fade-in-right {
     animation: fadeInRight 0.6s ease-out forwards;
 }
+
+/* ============================================
+   SCROLL REVEAL
+   ============================================ */
+
+/* Anything marked data-reveal in the HTML fades up the first time it scrolls
+   into view. The rules are gated on html.js (set by the inline script in
+   <head>) so the hidden state exists from the very first paint - and so the
+   page degrades to plain, visible content when JavaScript is off.
+
+   Once an element has finished appearing, script.js gives it .revealed, which
+   drops it out of both rules below and back to its normal styling. That is what
+   keeps it from ever being hidden or replayed on a later scroll, and it leaves
+   the :hover transforms on the cards free to work. */
+
+.js [data-reveal]:not(.revealed) {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.js [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Respect a reduced-motion preference: show everything, move nothing. */
+@media (prefers-reduced-motion: reduce) {
+    .js [data-reveal]:not(.revealed),
+    .js [data-reveal].is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

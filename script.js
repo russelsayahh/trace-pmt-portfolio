@@ -33,65 +33,112 @@ document.addEventListener('click', (e) => {
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 
+let currentSection = '';
+let navTicking = false;
+
 function updateActiveNav() {
     let current = '';
 
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= sectionTop - 200) {
+        if (window.scrollY >= section.offsetTop - 200) {
             current = section.getAttribute('id');
         }
     });
 
+    // Only touch the DOM when the active section actually changed.
+    if (current === currentSection) return;
+    currentSection = current;
+
     navLinks.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href').slice(1) === current) {
-            link.style.color = 'var(--primary-color)';
-        }
+        const isActive = link.getAttribute('href').slice(1) === current;
+        link.style.color = isActive ? 'var(--primary-color)' : '';
     });
 }
 
-window.addEventListener('scroll', updateActiveNav);
+// Throttle to one measurement per frame so scrolling stays smooth.
+window.addEventListener('scroll', () => {
+    if (navTicking) return;
+    navTicking = true;
+    requestAnimationFrame(() => {
+        updateActiveNav();
+        navTicking = false;
+    });
+}, { passive: true });
 
 // ============================================
 // SCROLL ANIMATIONS
 // ============================================
 
+// Tells the safety net in index.html's <head> that this script is alive, so it
+// leaves the reveal system switched on.
+window.revealReady = true;
+
+// Elements are marked with data-reveal in index.html - add the attribute to
+// anything new that should fade in, no change needed here.
+const REVEAL_DURATION = 600;  // must match the transition in styles.css
+const STAGGER_STEP = 70;      // ms between neighbours appearing together
+const STAGGER_MAX = 350;      // ms - cap so a big batch never crawls in
+
 function observeElements() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Reduced motion: the stylesheet already renders every element in its final
+    // state, so there is nothing to animate here.
+    if (prefersReducedMotion) return;
+
+    // No IntersectionObserver: drop the flag the reveal rules key off so that
+    // nothing is left hidden.
+    if (!('IntersectionObserver' in window)) {
+        document.documentElement.classList.remove('js');
+        return;
+    }
+
+    function reveal(el, delay) {
+        el.style.transitionDelay = delay ? `${delay}ms` : '';
+        el.classList.add('is-visible');
+
+        // Once it has finished appearing, mark it .revealed and drop the helper
+        // class: the element stops matching the reveal rules entirely, so it
+        // can never be hidden or replayed when it scrolls back into view.
+        const settle = (event) => {
+            // transitionend bubbles - ignore transitions from child buttons,
+            // inputs and links, which would otherwise cut the reveal short.
+            if (event && event.target !== el) return;
+
+            el.removeEventListener('transitionend', settle);
+            clearTimeout(fallback);
+            el.classList.add('revealed');
+            el.classList.remove('is-visible');
+            el.style.transitionDelay = '';
+        };
+
+        // Fallback for elements that never fire transitionend (a background
+        // tab, display:none at the time, an interrupted transition).
+        const fallback = setTimeout(settle, REVEAL_DURATION + delay + 300);
+        el.addEventListener('transitionend', settle);
+    }
 
     const observer = new IntersectionObserver((entries) => {
+        // Entries arrive in document order, so items that cross the line
+        // together - a row of cards, a section title and its grid - cascade.
+        let batchIndex = 0;
+
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                observer.unobserve(entry.target);
-            }
+            if (!entry.isIntersecting) return;
+            observer.unobserve(entry.target); // reveal each element exactly once
+            reveal(entry.target, Math.min(batchIndex * STAGGER_STEP, STAGGER_MAX));
+            batchIndex++;
         });
-    }, observerOptions);
-
-    // Observe service cards
-    document.querySelectorAll('.service-card').forEach(card => {
-        observer.observe(card);
+    }, {
+        // Fire once a tenth of the element is showing. Deliberately no negative
+        // rootMargin: a bottom margin would carve out a band at the foot of the
+        // page where an element can sit visible but never trigger, which at
+        // maximum scroll would leave it stranded invisible.
+        threshold: 0.1,
+        rootMargin: '0px'
     });
 
-    // Observe highlight items
-    document.querySelectorAll('.highlight-item').forEach(item => {
-        observer.observe(item);
-    });
-
-    // Observe education cards
-    document.querySelectorAll('.education-card, .internship-item').forEach(card => {
-        observer.observe(card);
-    });
-
-    // Observe volunteer cards
-    document.querySelectorAll('.volunteer-card').forEach(card => {
-        observer.observe(card);
-    });
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 }
 
 // Initialize on page load
@@ -262,13 +309,13 @@ function createScrollToTopButton() {
     document.body.appendChild(scrollButton);
 
     // Show/hide button based on scroll position
+    let buttonShown = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollButton.style.display = 'flex';
-        } else {
-            scrollButton.style.display = 'none';
-        }
-    });
+        const shouldShow = window.scrollY > 300;
+        if (shouldShow === buttonShown) return;
+        buttonShown = shouldShow;
+        scrollButton.style.display = shouldShow ? 'flex' : 'none';
+    }, { passive: true });
 
     // Scroll to top on click
     scrollButton.addEventListener('click', () => {
